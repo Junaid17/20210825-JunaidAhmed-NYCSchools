@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     lateinit var viewModel: SchoolViewModel
-    private val schoolListAdapter= SchoolListAdapter(arrayListOf())
+    private val schoolListAdapter= SchoolListAdapter(this,arrayListOf())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +32,10 @@ class MainActivity : AppCompatActivity() {
         observeViewModel()
 
     }
+
+    /*
+    * Observe data from viewmodel and updating the UI
+    * */
 
     private fun observeViewModel() {
         viewModel.schools.observe(this, Observer {

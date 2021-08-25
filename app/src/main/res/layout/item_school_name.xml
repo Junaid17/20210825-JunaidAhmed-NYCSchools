@@ -5,25 +5,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <TextView
-        android:id="@+id/dbn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="DSN"
-        android:layout_marginTop="@dimen/dimen_16dp"
-        android:textSize="18sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/schoolName"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DBN"
-        android:layout_marginTop="@dimen/dimen_16dp"
+        android:text="School name"
+        android:layout_margin="@dimen/dimen_16dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/schoolLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="School Location"
+        android:layout_margin="@dimen/dimen_16dp"
+        app:layout_constraintTop_toBottomOf="@+id/schoolName"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dbn"
-       />
+        app:layout_constraintTop_toBottomOf="@+id/schoolLocation"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
