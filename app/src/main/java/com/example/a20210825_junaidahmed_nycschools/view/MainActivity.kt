@@ -1,8 +1,8 @@
 package com.example.a20210825_junaidahmed_nycschools.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
-        viewModel.schoolname.observe(this, Observer {
+        viewModel.schools.observe(this, Observer {
             it?.let {
                 recyclerView.visibility= View.VISIBLE
                 schoolListAdapter.updateSchool(it)
