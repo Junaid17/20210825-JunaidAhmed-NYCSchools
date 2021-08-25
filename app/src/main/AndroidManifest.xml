@@ -21,7 +21,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.SchoolDetailsActivity"/>
+        <activity android:name=".view.SchoolDetailsActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

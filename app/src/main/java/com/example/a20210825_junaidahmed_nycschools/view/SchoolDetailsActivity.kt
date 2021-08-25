@@ -1,5 +1,6 @@
 package com.example.a20210825_junaidahmed_nycschools.view
 
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -17,23 +18,38 @@ class SchoolDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_school_details)
         viewModel= ViewModelProviders.of(this).get(SchoolPerformanceViewModel::class.java)
+        toolbar.title="SAT Score of School"
+        toolbar.getNavigationIcon()?.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        toolbar.setNavigationOnClickListener { view -> onBackPressed() }
 
-        // Extracting data received through the intent
-//        val intent = intent
+        val intent = intent
         val dbn = intent.getStringExtra("DBN")
         val schoolName = intent.getStringExtra("NAME")
+        schoolNameTV.text=schoolName
         viewModel.fetchSchoolPerfomrance(dbn)
         observeViewModel()
     }
 
 
+    /*
+       * Observe data from viewmodel and updating the UI
+       * */
     private fun observeViewModel() {
         viewModel.schoolsPerformance.observe(this, Observer {
             it?.let {
-                if(it.isEmpty())
-                    textview.text="No Score avaialble for ths school"
-                else
-                    textview.text=it.toString()
+                if(it.isEmpty()) {
+                    testTakerTV.visibility = View.GONE
+                    readingAvgTV.visibility = View.GONE
+                    mathsAvgTV.visibility = View.GONE
+                    writingAvgTV.visibility = View.GONE
+                    noDataTV.text = "No SAT data avaialble for ths school"
+                }
+                else{
+                    testTakerTV.text = "Test takers = ${it.get(0).numOfSatTestTakers}"
+                    readingAvgTV.text ="Reading Average Score = ${it.get(0).satCriticalReadingAvgScore}"
+                    mathsAvgTV.text ="Maths Average Score = ${it.get(0).satMathAvgScore}"
+                    writingAvgTV.text ="Writing Average Score = ${it.get(0).satWritingAvgScore}"
+                }
             }
         })
 
