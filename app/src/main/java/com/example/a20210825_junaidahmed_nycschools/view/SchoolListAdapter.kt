@@ -40,7 +40,9 @@ class SchoolListAdapter(var context: Context ,var school:ArrayList<School>):Recy
         })
     }
 
+
     override fun getItemCount()=school.size
+
 
     class SchooolViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
@@ -49,7 +51,9 @@ class SchoolListAdapter(var context: Context ,var school:ArrayList<School>):Recy
 
         fun onBind(school: School){
             schoolName.text=school.school_name
-            schoolLocation.text=school.location
+            // Removing Lat and Long from location
+            var location = school.location?.replace("\\(.*\\)".toRegex(), "")
+            schoolLocation.text=location
         }
 
     }

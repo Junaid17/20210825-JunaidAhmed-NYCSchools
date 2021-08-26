@@ -16,13 +16,13 @@ class SchoolAPIModule {
 
     private val BASE_URL="https://data.cityofnewyork.us/resource/"
 
+    //  Provides schoolAPI object ready to use with inject
     @Provides
     fun provideSchoolAPI() :SchoolAPI{
 
         val interceptor = HttpLoggingInterceptor()
         interceptor.level= HttpLoggingInterceptor.Level.BODY
         val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
-
 
         return  Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -34,7 +34,7 @@ class SchoolAPIModule {
 
     }
 
-
+    //  Provides SchoolService object ready to use with inject
     @Provides
     fun provideSchoolService():SchoolService{
         return SchoolService()
